@@ -14,7 +14,7 @@ const Landing: React.FC = () => (
                 <DangerButton>Get Started</DangerButton>
             </div>
             <div className="flex flex-grow flex-col flex-wrap w-full md:max-w-1/3 justify-center items-center text-white mx-8 md:mx-12 my-20 max-w-xs xl:max-w-sm">
-                <img src={DiscussionIllustration} alt="Post Illustration"/>
+                <img src={DiscussionIllustration} alt="Post Illustration" />
             </div>
         </section>
     </div>
