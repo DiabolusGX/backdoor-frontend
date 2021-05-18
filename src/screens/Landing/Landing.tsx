@@ -3,7 +3,7 @@ import DiscussionIllustration from '../../assets/discussion-illustration.svg';
 import classes from './Landing.module.css';
 import DangerButton from '../../components/DangerButton';
 import { useState } from 'react';
-import SignupModal from '../../components/SignupModal';
+import SignupModal from '../../components/SignupModal/SignupModal';
 
 const Landing: React.FC = () => {
     const [showSignupModal, setShowSignupModal] = useState(false);

@@ -1,5 +1,6 @@
 import GoogleLogin from 'react-google-login';
-import Backdrop from './Backdrop';
+import Backdrop from '../Backdrop';
+import classes from './SignupModal.module.css';
 
 interface Props {
     show: boolean;
@@ -11,8 +12,7 @@ const SignupModal: React.FC<Props> = (props) => {
     return (
         props.show ?
             <>
-                <div className="min-w-1/2 w-11/12 md:w-auto h-1/6 md:h-1/5 m-5 md:m-auto 
-                bg-grey rounded-3xl flex align-center justify-center fixed z-50 md:left-1/4 top-20">
+                <div className={`flex justify-center items-center bg-grey rounded-2xl ${classes.Modal}`}>
                     <GoogleLogin
                         clientId="354994676457-gs5b15kpob96uae09m2ut46rl2lsqcvc.apps.googleusercontent.com"
                         buttonText="Signup with Google"
