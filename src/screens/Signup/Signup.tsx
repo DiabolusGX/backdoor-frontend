@@ -9,19 +9,6 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const Signup: React.FC = () => {
-    const sendRegistrationData = () => {
-        axios.post('/user/signup', {
-            email: 'someuser1@gmail.com',
-            username: 'someuser1234',
-            password: 'password'
-        }).then(res => {
-            console.log(res);
-        }).catch(err => console.log(err.response.data.message));
-    }
-
-    useEffect(() => {
-        sendRegistrationData();
-    }, []);
     return (
         <>
             <Navbar />
