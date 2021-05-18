@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar: React.FC = () => (
-    <nav className="flex px-1 bg-grey sticky top-0 mb-5 font-display font-medium" id="navbar">
+    <nav className="flex flex-1 w-screen px-1 bg-grey fixed top-0 left-0 mb-5 font-display font-medium z-50"
+        id="navbar">
         <div className="flex flex-1 flex-wrap lg:flex-nowrap justify-between items-center">
             <ul className="flex px-6">
-                <li className="transition-border duration-300 border-b-4 border-transparent hover:bg-grey-lighter py-4 px-3 text-lg text-syntax-yellow-darker">
-                    <Link to="#">Home</Link>
+                <li className="transition-border duration-300 border-b-4 border-transparent hover:bg-grey-lighter py-4 px-3 font-logo text-lg text-red">
+                    <Link to="/">Backdoor</Link>
                 </li>
             </ul>
 
@@ -21,7 +22,7 @@ const Navbar: React.FC = () => (
             <div className="hidden lg:flex lg-w-min lg:items-center lg:justify-end w-full px-6" id="hamburger-menu">
                 <ul className="lg:flex items-center">
                     <li className="transition-border duration-300 border-b-4 border-transparent hover:bg-grey-lighter py-4 px-3 lg:px-5 lg:mx-3 text-lg text-syntax-yellow-darker">
-                        <Link to="#">Sign Up</Link>
+                        <Link to="/signup">Sign Up</Link>
                     </li>
                     <li className="transition-border duration-300 border-b-4 border-transparent hover:bg-grey-lighter py-4 px-3 lg:px-5 lg:mx-3 text-lg text-syntax-yellow-darker">
                         <Link to="#">Login</Link>

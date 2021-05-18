@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 interface Props {
-    signupOnClick: () => void;
+    loginOnClick: () => void;
 }
 
 const HeroNavbar: React.FC<Props> = props => (
@@ -13,10 +13,10 @@ const HeroNavbar: React.FC<Props> = props => (
         </ul>
         <ul className="hidden md:flex">
             <li className="transition-border duration-300 border-2 border-transparent hover:border-red py-4 px-7 text-lg text-syntax-yellow-darker rounded-full mx-3">
-                <Link to="#" className="text-xl">Login</Link>
+                <Link to="#" className="text-xl" onClick={props.loginOnClick}>Login</Link>
             </li>
             <li className="transition-border duration-300 border-2 border-transparent bg-grey-lighter hover:border-red py-4 px-8 text-lg text-syntax-yellow-darker rounded-full mx-5">
-                <Link to="#" className="text-xl" onClick={props.signupOnClick}>Sign Up</Link>
+                <Link to="/signup" className="text-xl">Sign Up</Link>
             </li>
         </ul>
     </div>

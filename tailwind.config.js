@@ -15,10 +15,11 @@ module.exports = {
         'red-light': '#E95379',
         'green-darker': '#27D796',
         'green': '#09F7A0',
+        'yellow': '#FAB28E',
         'syntax-purple': '#B877DB',
         'syntax-cyan': '#21BFC2',
         'syntax-red': '#E95678',
-        'syntax-orange': 'F09383',
+        'syntax-orange': '#F09383',
         'syntax-yellow': '#FAC29A',
         'syntax-yellow-darker': '#FAB795',
         'terminal-teal': '#26BBD9',
@@ -26,7 +27,8 @@ module.exports = {
         'terminal-green': '#29D398',
         'terminal-pink': '#EE64AE',
         'terminal-red': '#E95678',
-        'terminal-yellow': '#FAB795'
+        'terminal-yellow': '#FAB795',
+        'elevation-grey': '#0d0d0d'
       },
       fontFamily: {
         'display': ['Quicksand'],
