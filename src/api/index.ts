@@ -11,8 +11,7 @@ export const createThread = (threadData: IThreadData) => API.post('/threads/crea
 // Posts API Routes
 export const fetchAllPosts = () => API.get('/posts');
 export const fetchPost = (id: string) => API.get(`/posts/${id}`);
-export const fetchPostsBySearch = (title?: string, tags?: string) => 
-    API.get(`/posts/search?title=${title}&tags=${tags}`);
+export const fetchPostsBySearch = (title?: string, tags?: string) => API.get(`/posts/search?title=${title}&tags=${tags}`);
 export const createPost = (postData: IPostData) => API.post('/posts/create', postData);
 export const updatePost = (id: string, updatedPost: IPostData) => API.patch('/posts/update', { id, updatedPost });
 export const likePost = (id: string) => API.patch(`/posts/like?id=${id}`);
