@@ -7,14 +7,13 @@ interface Props {
     name?: string;
     required?: boolean;
     inputRef?: React.RefObject<HTMLInputElement>;
-    // icon is the string containing font awesome classes for icon
-    icon?: string;
+    icon?: "mail" | "user" | "password";
 }
 
 const TextField: React.FC<Props> = props => {
-    const icon = props.icon == "mail" ? <MailIcon className="w-2/3 h-2/3" /> :
-            props.icon == "user" ? <UserIcon className="w-2/3 h-2/3" /> :
-            props.icon == "password" ? <KeyIcon className="w-2/3 h-2/3" /> :
+    const icon = props.icon === "mail" ? <MailIcon className="w-2/3 h-2/3" /> :
+            props.icon === "user" ? <UserIcon className="w-2/3 h-2/3" /> :
+            props.icon === "password" ? <KeyIcon className="w-2/3 h-2/3" /> :
             null;
 
     return (

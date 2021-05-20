@@ -11,7 +11,6 @@ import { useState, useRef, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import SecureloginIllustration from '../../assets/securelogin-illustration.svg';
-import { UserIcon } from '@heroicons/react/solid';
 import classes from './Signup.module.scss';
 
 const Signup: React.FC = () => {
