@@ -1,7 +1,7 @@
-import HeroNavbar from '../../components/HeroNavbar/HeroNavbar';
-import Illustration from '../../components/Illustration';
-import classes from './Landing.module.css';
-import DangerButton from '../../components/DangerButton';
+import HeroNavbar from '../../components/Navbars/HeroNavbar';
+import Illustration from '../../components/Utilities/Illustration';
+import classes from './Landing.module.scss';
+import DangerButton from '../../components/Buttons/DangerButton';
 import DiscussionIllustration from '../../assets/discussion-illustration.svg';
 
 const Landing: React.FC = () => {
@@ -9,9 +9,6 @@ const Landing: React.FC = () => {
     return (
         <div className={`mt-0 pt-0 ${classes.HeroHeader}`}>
             <HeroNavbar />
-            {/* <Route path="/login">
-                <LoginModal />
-            </Route> */}
 
             <section className="flex flex-wrap justify-center h-1/2 md:h-3/4">
                 <div className="flex flex-grow flex-col flex-wrap w-full md:max-w-1/2 justify-center items-center md:items-start text-center md:text-left text-white mx-8 lg:mx-16 xl:mx-20 my-4 text-left">

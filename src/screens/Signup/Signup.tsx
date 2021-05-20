@@ -1,15 +1,18 @@
-import Navbar from '../../components/Navbar/Navbar';
-import classes from './Signup.module.css';
-import TextField from '../../components/TextField';
-import SuccessButton from '../../components/SuccessButton';
-import Illustration from '../../components/Illustration';
-import Heading from '../../components/Heading';
-import SecureloginIllustration from '../../assets/securelogin-illustration.svg';
+import Navbar from '../../components/Navbars/Navbar';
+import TextField from '../../components/Utilities/TextField';
+import SuccessButton from '../../components/Buttons/SuccessButton';
+import Illustration from '../../components/Utilities/Illustration';
+import Heading from '../../components/Utilities/Heading';
 import Joi from 'joi';
 import axios from 'axios';
+
 import { toast, Flip } from 'react-toastify';
 import { useState, useRef, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import SecureloginIllustration from '../../assets/securelogin-illustration.svg';
+import { UserIcon } from '@heroicons/react/solid';
+import classes from './Signup.module.scss';
 
 const Signup: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
@@ -117,20 +120,20 @@ const Signup: React.FC = () => {
                 </div>
 
                 <div className="flex flex-1 justify-center items-center">
-                    <div className={`w-11/12 md:w-3/5 m-4 py-10 md:py-18 xl:px-12 backdrop-filter backdrop-blur-3xl
+                    <div className={`w-11/12 md:w-3/5 2xl:w-2/5 m-4 py-10 md:py-18 xl:px-8 backdrop-filter backdrop-blur-3xl
         bg-grey-lighter rounded-3xl ${classes.Signup} flex flex-col justify-start items-center`}>
                         <Heading>
-                        Get your access to Backdoor
+                            Get your access to Backdoor
                         </Heading>
-                        <form onSubmit={submitHandler} className="w-full mt-12 mb-4 mx-4 flex flex-col items-center">
-                            <TextField placeholder="Email" type="email" name="email" required
-                                inputRef={emailRef} />
-                            <TextField placeholder="Username" type="text" name="username" required
-                                inputRef={usernameRef} />
+                        <form onSubmit={submitHandler} className="w-full mt-4 mb-2 mx-4 flex flex-col items-center">
+                            <TextField placeholder="john.doe@example.com" type="email" name="email" required
+                                label="Email" inputRef={emailRef} icon="mail" />
+                            <TextField placeholder="johndoe" type="text" name="username" required
+                                label="Username" inputRef={usernameRef} icon="user" />
                             <TextField placeholder="Password" type="password" name="password" required
-                                inputRef={passwordRef} />
+                                label="Password" inputRef={passwordRef} icon="password" />
                             <TextField placeholder="Confirm Password" type="password" required
-                                inputRef={confirmPasswordRef} />
+                                label="Confirm Password" inputRef={confirmPasswordRef} icon="password" />
                             <SuccessButton type="submit">Sign Up</SuccessButton>
                         </form>
                         <p className="font-display text-red text-center text-md mx-2">{errorMessage}</p>

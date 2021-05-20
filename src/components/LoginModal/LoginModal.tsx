@@ -1,8 +1,8 @@
-import Backdrop from '../Backdrop';
-import classes from './LoginModal.module.css';
-import Heading from '../Heading';
-import TextField from '../TextField';
-import SuccessButton from '../SuccessButton';
+import Backdrop from '../Utilities/Backdrop';
+import classes from '../../scss/LoginModal.module.scss';
+import Heading from '../Utilities/Heading';
+import TextField from '../Utilities/TextField';
+import SuccessButton from '../Buttons/SuccessButton';
 
 interface Props {
     show: boolean;
@@ -14,11 +14,23 @@ const LoginModal: React.FC<Props> = props => (
         <div className={`flex flex-col justify-center items-center bg-grey-lighter rounded-2xl ${classes.Modal}`}>
             <Heading>
                 Login
-                    </Heading>
-            <form action="/user/login" method="post" className="my-8 flex flex-col flex-1">
-                <TextField placeholder="Username / Email" type="text" />
-                <TextField placeholder="Password" type="password" />
-                <SuccessButton type="submit">Login</SuccessButton>
+            </Heading>
+            <form action="/user/login" method="post" className="mt-4 my-2 flex flex-col flex-1">
+                <TextField
+                    label="Email or Username"
+                    placeholder="john.doe@example.com"
+                    type="text"
+                    icon="user"
+                />
+                <TextField
+                    label="Password"
+                    placeholder="Password"
+                    type="password"
+                    icon="password"
+                />
+                <div className="mt-4 flex justify-center align-center">
+                    <SuccessButton type="submit">Login</SuccessButton>
+                </div>
             </form>
         </div>
         <Backdrop clicked={props.backdropClicked} />
