@@ -3,6 +3,7 @@ import TextField from '../../components/Utilities/TextField';
 import SuccessButton from '../../components/Buttons/SuccessButton';
 import Illustration from '../../components/Utilities/Illustration';
 import Heading from '../../components/Utilities/Heading';
+import { signUp } from '../../api/index';
 import Joi from 'joi';
 import axios from 'axios';
 
@@ -88,11 +89,7 @@ const Signup: React.FC = () => {
             setErrorMessage(error.message);
         } else {
             setErrorMessage(undefined);
-            axios.post('/user/signup', {
-                email,
-                username,
-                password
-            })
+            signUp({ email, username, password })
                 .then(res => {
                     toast.success(res.data.message, {
                         onOpen: () => history.push('/'),
@@ -102,7 +99,6 @@ const Signup: React.FC = () => {
                 .catch(err => {
                     toast.error(err.response.data.message, { transition: Flip });
                 });
-
         }
     }
 
