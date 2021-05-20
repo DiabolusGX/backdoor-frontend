@@ -8,7 +8,7 @@ import SecureloginIllustration from '../../assets/securelogin-illustration.svg';
 import Joi from 'joi';
 import axios from 'axios';
 import { toast, Flip } from 'react-toastify';
-import { useState, useRef } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const Signup: React.FC = () => {
@@ -30,6 +30,12 @@ const Signup: React.FC = () => {
         if (!/^[a-zA-Z]/.test(value)) throw new Error();
     }
     const registrationSchema = Joi.object({
+        email: Joi.string()
+            .email({
+                // Maybe whitelist domains to ['com', 'ru', 'org', 'dev', 'net', 'in']
+                tlds: { allow: false }
+            })
+            .required(),
         username: Joi.string()
             .alphanum()
             .min(4)
@@ -39,7 +45,6 @@ const Signup: React.FC = () => {
             .messages({
                 'any.custom': "Username must start with an uppercase or lowercase letter."
             }),
-
         password: Joi.string()
             .min(12)
             .max(64)
@@ -49,7 +54,6 @@ const Signup: React.FC = () => {
                 'any.custom':
                     "Password must have at least one lowercase character, one uppercase character and one number."
             }),
-
         confirmPassword: Joi.string()
             .valid(Joi.ref('password'))
             .required()
@@ -63,14 +67,16 @@ const Signup: React.FC = () => {
     const passwordRef = useRef<HTMLInputElement>(null);
     const confirmPasswordRef = useRef<HTMLInputElement>(null);
 
-    const submitHandler = (): void => {
+    const submitHandler = (e: FormEvent<HTMLFormElement>): void => {
         const email = emailRef.current?.value;
         const username = usernameRef.current?.value;
         const password = passwordRef.current?.value;
         const confirmPassword = confirmPasswordRef.current?.value;
 
+        e.preventDefault();
 
         const { error } = registrationSchema.validate({
+            email,
             username,
             password,
             confirmPassword
