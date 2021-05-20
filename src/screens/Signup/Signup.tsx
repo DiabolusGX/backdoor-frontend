@@ -4,9 +4,9 @@ import TextField from '../../components/TextField';
 import SuccessButton from '../../components/SuccessButton';
 import Illustration from '../../components/Illustration';
 import Heading from '../../components/Heading';
+import { signUp } from '../../api/index';
 import SecureloginIllustration from '../../assets/securelogin-illustration.svg';
 import Joi from 'joi';
-import axios from 'axios';
 import { toast, Flip } from 'react-toastify';
 import { useState, useRef, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -86,11 +86,7 @@ const Signup: React.FC = () => {
             setErrorMessage(error.message);
         } else {
             setErrorMessage(undefined);
-            axios.post('/user/signup', {
-                email,
-                username,
-                password
-            })
+            signUp({ email, username, password })
                 .then(res => {
                     toast.success(res.data.message, {
                         onOpen: () => history.push('/'),
@@ -100,7 +96,6 @@ const Signup: React.FC = () => {
                 .catch(err => {
                     toast.error(err.response.data.message, { transition: Flip });
                 });
-
         }
     }
 
