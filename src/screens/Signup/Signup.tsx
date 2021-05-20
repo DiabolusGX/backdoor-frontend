@@ -120,7 +120,6 @@ const Signup: React.FC = () => {
                     <div className={`w-11/12 md:w-3/5 m-4 py-10 md:py-18 xl:px-12 backdrop-filter backdrop-blur-3xl
         bg-grey-lighter rounded-3xl ${classes.Signup} flex flex-col justify-start items-center`}>
                         <Heading>
-                            {/* Get your access to <span className="font-logo text-5xl text-red">Backdoor</span> */}
                         Get your access to Backdoor
                         </Heading>
                         <form onSubmit={submitHandler} className="w-full mt-12 mb-4 mx-4 flex flex-col items-center">
