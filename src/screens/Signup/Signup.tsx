@@ -7,7 +7,7 @@ import Heading from '../../components/Heading';
 import SecureloginIllustration from '../../assets/securelogin-illustration.svg';
 import Joi from 'joi';
 import axios from 'axios';
-import { ToastContainer, toast, Flip } from 'react-toastify';
+import { toast, Flip } from 'react-toastify';
 import { useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -87,12 +87,12 @@ const Signup: React.FC = () => {
             })
                 .then(res => {
                     toast.success(res.data.message, {
-                        onClose: () => history.push('/'),
+                        onOpen: () => history.push('/'),
                         transition: Flip
                     });
                 })
                 .catch(err => {
-                    toast.error(err.response.data.message, {transition: Flip});
+                    toast.error(err.response.data.message, { transition: Flip });
                 });
 
         }
@@ -101,7 +101,6 @@ const Signup: React.FC = () => {
     return (
         <>
             <Navbar />
-            <ToastContainer />
             <section className="flex flex-wrap w-screen h-screen box-border pt-16">
                 <div className="h-full hidden xl:block xl:w-3/12 px-5 bg-yellow flex flex-col items-start">
                     <h2 className="font-logo text-xl text-red text-left pt-28 mx-2 my-4">Backdoor</h2>
@@ -118,7 +117,7 @@ const Signup: React.FC = () => {
                             {/* Get your access to <span className="font-logo text-5xl text-red">Backdoor</span> */}
                         Get your access to Backdoor
                         </Heading>
-                        <form action="#" onSubmit={submitHandler} className="w-full mt-12 mb-4 mx-4 flex flex-col items-center">
+                        <form onSubmit={submitHandler} className="w-full mt-12 mb-4 mx-4 flex flex-col items-center">
                             <TextField placeholder="Email" type="email" name="email" required
                                 inputRef={emailRef} />
                             <TextField placeholder="Username" type="text" name="username" required
