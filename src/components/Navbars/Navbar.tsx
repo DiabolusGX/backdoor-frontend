@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import LoginModal from '../LoginModal/LoginModal';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import './Navbar.css';
+import '../../scss/Navbar.scss';
 
 const Navbar: React.FC = () => {
     const [showLoginModal, setShowLoginModal] = useState(false);

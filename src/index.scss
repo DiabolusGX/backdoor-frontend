@@ -1,0 +1,13 @@
+@import "./scss/config";
+@import "../node_modules/bulma/sass/utilities/all";
+@import "../node_modules/bulma/sass/form/all";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  font-family: $font-body;
+  @include site-background;
+}
