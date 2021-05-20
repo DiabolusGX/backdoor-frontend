@@ -1,24 +1,17 @@
-import { useState } from 'react';
-
 import HeroNavbar from '../../components/HeroNavbar/HeroNavbar';
 import Illustration from '../../components/Illustration';
 import classes from './Landing.module.css';
 import DangerButton from '../../components/DangerButton';
-import LoginModal from '../../components/LoginModal/LoginModal';
 import DiscussionIllustration from '../../assets/discussion-illustration.svg';
 
 const Landing: React.FC = () => {
-    const [showLoginModal, setShowLoginModal] = useState(false);
-
-    const backdropClickHandler = () => {
-        setShowLoginModal(false);
-    }
-    const loginClickHandler = () => setShowLoginModal(true);
 
     return (
         <div className={`mt-0 pt-0 ${classes.HeroHeader}`}>
-            <LoginModal show={showLoginModal} backdropClicked={backdropClickHandler} />
-            <HeroNavbar loginOnClick={loginClickHandler} />
+            <HeroNavbar />
+            {/* <Route path="/login">
+                <LoginModal />
+            </Route> */}
 
             <section className="flex flex-wrap justify-center h-1/2 md:h-3/4">
                 <div className="flex flex-grow flex-col flex-wrap w-full md:max-w-1/2 justify-center items-center md:items-start text-center md:text-left text-white mx-8 lg:mx-16 xl:mx-20 my-4 text-left">
