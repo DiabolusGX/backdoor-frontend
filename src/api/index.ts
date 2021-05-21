@@ -23,3 +23,4 @@ export const login = (loginData: ILogIn) => API.post('/user/login', loginData);
 export const signUp = (signupData: ISignUp) => API.post('/user/signup', signupData);
 export const getUser = (username: string) => API.get(`/user?username=${username}`);
 export const updateUser = (updateData: IUpdateUser) => API.patch('/user/update', updateData);
+export const checkAuthenticated = () => API.post("/user/check");

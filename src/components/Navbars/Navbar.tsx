@@ -3,7 +3,7 @@ import LoginModal from '../LoginModal/LoginModal';
 import { logout } from '../../api/index';
 import { deauthenticate } from '../../store/userSlice';
 import { toast, Flip } from 'react-toastify';
-import { IStore } from '../../store/authInterface';
+import { IStore } from '../../store/userInterface';
 
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
     const [showLoginModal, setShowLoginModal] = useState(false);
     const history = useHistory();
     const dispatch = useDispatch();
-    const isAuthenticated = useSelector((state: IStore) => state.auth.isAuthenticated)
+    const isAuthenticated = useSelector((state: IStore) => state.user.isAuthenticated)
 
     const backdropClickHandler = () => {
         setShowLoginModal(false);
