@@ -1,13 +1,13 @@
 import Backdrop from '../Utilities/Backdrop';
-import classes from '../../scss/LoginModal.module.scss';
+import classes from './LoginModal.module.scss';
 import Heading from '../Utilities/Heading';
 import TextField from '../Utilities/TextField';
 import SuccessButton from '../Buttons/SuccessButton';
 import loginSchema from '../../schema/loginSchema';
-import { authenticate } from '../../store/authSlice';
+import { authenticate, setPermissionLevel, setUsername } from '../../store/userSlice';
 import { login } from '../../api/index';
 import { useRef, useState, FormEvent } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { toast, Flip } from 'react-toastify';
 
 import { useDispatch } from 'react-redux';
@@ -22,6 +22,7 @@ const LoginModal: React.FC<Props> = props => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const dispatch = useDispatch();
     const history = useHistory();
+    const location = useLocation();
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -45,15 +46,37 @@ const LoginModal: React.FC<Props> = props => {
                 password
             })
                 .then(res => {
+                    // Set global application state to indicate that user is authenticated.
                     dispatch(authenticate());
+                    // Save user data in global state
+                    dispatch(setUsername(res.data.username));
+                    dispatch(setPermissionLevel(res.data.permissionLevel));
+
                     toast.success(res.data.message, {
-                        onOpen: () => history.push('/'),
+                        onOpen: () => {
+                            // If we're on the signup page, redirect on login
+                            // Else, just close the modal
+                            if (location.pathname === "/signup") {
+                                props.backdropClicked();
+                                history.push('/');
+                            }
+                            else
+                                props.backdropClicked()
+                        },
                         transition: Flip
-                    })
+                    });
                 })
                 .catch(err => {
-                    console.log(err.response);
-                    toast.error(err.response.data.message, { transition: Flip });
+                    switch (err.response.status) {
+                        case 500:
+                            toast.error("Server unreachable", { transition: Flip });
+                            break;
+                        case 401:
+                            toast.error("Username or password incorrect", { transition: Flip });
+                            break;
+                        default:
+                            toast.error(err.response.data.message, { transition: Flip });
+                    }
                 });
         }
     }

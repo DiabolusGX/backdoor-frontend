@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import LoginModal from '../LoginModal/LoginModal';
 import { logout } from '../../api/index';
-import { deauthenticate } from '../../store/authSlice';
+import { deauthenticate } from '../../store/userSlice';
 import { toast, Flip } from 'react-toastify';
 
 import { useState } from 'react';

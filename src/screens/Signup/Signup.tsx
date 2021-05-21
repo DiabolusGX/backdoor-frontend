@@ -51,7 +51,13 @@ const Signup: React.FC = () => {
                     });
                 })
                 .catch(err => {
-                    toast.error(err.response.data.message, { transition: Flip });
+                    if (err.response.status === 500) {
+                        toast.error("Server unreachable",
+                            { transition: Flip }
+                        );
+                    } else {
+                        toast.error(err.response.data.message, { transition: Flip });
+                    }
                 });
         }
     }
