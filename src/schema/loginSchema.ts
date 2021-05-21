@@ -38,12 +38,16 @@ const loginSchema = Joi.object({
                     'any.custom': "Username must start with an uppercase or lowercase letter."
                 })
         )
-        .required(),
+        .required()
+        .messages({
+            'alternatives.match': "Please enter either a valid email or a valid username."
+    }),
     password: Joi.string()
         .min(12)
         .max(64)
         .custom(complexityCheck, 'complexity check')
         .required()
+        .label("Password")
         .messages({
             'any.custom':
                 "Password must have at least one lowercase character, one uppercase character and one number."

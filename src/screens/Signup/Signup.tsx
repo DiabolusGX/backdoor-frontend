@@ -59,7 +59,7 @@ const Signup: React.FC = () => {
     return (
         <>
             <Navbar />
-            <section className="flex flex-wrap w-screen h-screen box-border pt-16">
+            <section className="flex flex-wrap w-screen h-screen box-border pt-16 overflow-hidden">
                 <div className="h-full hidden xl:block xl:w-3/12 px-5 bg-yellow flex flex-col items-start">
                     <h2 className="font-logo text-xl text-red text-left pt-28 mx-2 my-4">Backdoor</h2>
                     <p className="font-body text-2xl tracking-wider text-grey-darker text-left mx-2 mt-4 xl:mb-24 2xl:mb-96">
@@ -69,7 +69,7 @@ const Signup: React.FC = () => {
                 </div>
 
                 <div className="flex flex-1 justify-center items-center">
-                    <div className={`w-11/12 md:w-3/5 2xl:w-2/5 m-4 py-10 md:py-18 xl:px-8 backdrop-filter backdrop-blur-3xl
+                    <div className={`w-11/12 md:w-3/5 2xl:w-2/5 m-4 py-3 sm:py-6 xl:py-10 xl:px-8 backdrop-filter backdrop-blur-3xl
         bg-grey-lighter rounded-3xl ${classes.Signup} flex flex-col justify-start items-center`}>
                         <Heading>
                             Get your access to Backdoor

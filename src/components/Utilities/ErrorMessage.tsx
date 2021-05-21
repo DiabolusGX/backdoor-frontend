@@ -1,5 +1,5 @@
 const ErrorMessage: React.FC = props => (
-    <p className="font-display text-red text-center text-md mx-2">
+    <p className="font-display text-red text-lg text-center text-md mt-4 mx-2">
         {props.children}
     </p>
 );

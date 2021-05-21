@@ -21,6 +21,7 @@ const registrationSchema = Joi.object({
             // Maybe whitelist domains to ['com', 'ru', 'org', 'dev', 'net', 'in']
             tlds: { allow: false }
         })
+        .label("Email")
         .required(),
     username: Joi.string()
         .alphanum()
@@ -28,6 +29,7 @@ const registrationSchema = Joi.object({
         .max(50)
         .custom(usernameValidation, 'username validation')
         .required()
+        .label("Username")
         .messages({
             'any.custom': "Username must start with an uppercase or lowercase letter."
         }),
@@ -36,6 +38,7 @@ const registrationSchema = Joi.object({
         .max(64)
         .custom(complexityCheck, 'complexity check')
         .required()
+        .label("Password")
         .messages({
             'any.custom':
                 "Password must have at least one lowercase character, one uppercase character and one number."
@@ -43,6 +46,7 @@ const registrationSchema = Joi.object({
     confirmPassword: Joi.string()
         .valid(Joi.ref('password'))
         .required()
+        .label("Confirm Password")
         .messages({
             'any.only': 'Passwords do not match'
         })
