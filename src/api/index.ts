@@ -18,8 +18,8 @@ export const likePost = (id: string) => API.patch(`/posts/like?id=${id}`);
 export const deletePost = (id: string) => API.delete(`/posts/delete?id=${id}`);
 
 // User API Routes
-export const logOut = () => API.post('/user/logout');
-export const logIn = (loginData: ILogIn) => API.post('/user/login', loginData);
+export const logout = () => API.post('/user/logout');
+export const login = (loginData: ILogIn) => API.post('/user/login', loginData);
 export const signUp = (signupData: ISignUp) => API.post('/user/signup', signupData);
 export const getUser = (username: string) => API.get(`/user?username=${username}`);
 export const updateUser = (updateData: IUpdateUser) => API.patch('/user/update', updateData);

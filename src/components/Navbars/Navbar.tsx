@@ -1,18 +1,82 @@
 import { Link } from 'react-router-dom';
 import LoginModal from '../LoginModal/LoginModal';
+import { logout } from '../../api/index';
+import { deauthenticate } from '../../store/authSlice';
+import { toast, Flip } from 'react-toastify';
+
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
 import '../../scss/Navbar.scss';
+
+interface Store {
+    auth: {
+        isAuthenticated: boolean
+    }
+}
 
 const Navbar: React.FC = () => {
     const [showLoginModal, setShowLoginModal] = useState(false);
     const history = useHistory();
+    const dispatch = useDispatch();
+    const isAuthenticated = useSelector((state: Store) => state.auth.isAuthenticated)
 
     const backdropClickHandler = () => {
         setShowLoginModal(false);
     }
     const loginClickHandler = () => setShowLoginModal(true);
+
+    const logoutClickHandler = () => {
+        logout()
+            .then(res => {
+                dispatch(deauthenticate());
+                toast.success(res.data.message, { transition: Flip });
+                history.push('/');
+            })
+            .catch(err => {
+                toast.error(err.response.data.message, { transition: Flip });
+            });
+    }
+
     const signupClickHandler = () => history.push("/signup");
+    let rightNavLinks;
+
+    if (isAuthenticated) {
+        rightNavLinks = (
+            <>
+                <li>
+                    <button className="transition-border duration-300 border-4 border-transparent hover:bg-grey-lighter
+                                py-4 px-3 lg:px-5 lg:mx-3 w-full lg:w-auto text-lg font-medium text-syntax-yellow-darker focus:outline-none"
+                        onClick={logoutClickHandler}
+                    >
+                        Logout
+                    </button>
+                </li>
+            </>
+        );
+    } else {
+        rightNavLinks = (
+            <>
+                <li>
+                    <button className="transition-border duration-300 border-4 border-transparent hover:bg-grey-lighter 
+                                py-4 px-3 lg:px-5 lg:mx-3 w-full lg:w-auto text-lg font-medium text-syntax-yellow-darker focus:outline-none"
+                        onClick={signupClickHandler}
+                    >
+                        Sign Up
+                                </button>
+                </li>
+                <li>
+                    <button className="transition-border duration-300 border-4 border-transparent hover:bg-grey-lighter
+                                py-4 px-3 lg:px-5 lg:mx-3 w-full lg:w-auto text-lg font-medium text-syntax-yellow-darker focus:outline-none"
+                        onClick={loginClickHandler}
+                    >
+                        Login
+                                </button>
+                </li>
+            </>
+        );
+    }
 
     return (
         <>
@@ -39,22 +103,7 @@ const Navbar: React.FC = () => {
 
                     <div className="hidden lg:flex lg-w-min lg:items-center lg:justify-end w-full lg:px-6" id="hamburger-menu">
                         <ul className="lg:flex items-center">
-                            <li>
-                                <button className="transition-border duration-300 border-4 border-transparent hover:bg-grey-lighter 
-                                py-4 px-3 lg:px-5 lg:mx-3 w-full lg:w-auto text-lg font-medium text-syntax-yellow-darker focus:outline-none"
-                                    onClick={signupClickHandler}
-                                >
-                                    Sign Up
-                                </button>
-                            </li>
-                            <li>
-                                <button className="transition-border duration-300 border-4 border-transparent hover:bg-grey-lighter
-                                py-4 px-3 lg:px-5 lg:mx-3 w-full lg:w-auto text-lg font-medium text-syntax-yellow-darker focus:outline-none"
-                                    onClick={loginClickHandler}
-                                >
-                                    Login
-                                </button>
-                            </li>
+                            {rightNavLinks}
                         </ul>
                     </div>
                 </div>

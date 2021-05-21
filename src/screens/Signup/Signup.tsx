@@ -4,7 +4,7 @@ import SuccessButton from '../../components/Buttons/SuccessButton';
 import Illustration from '../../components/Utilities/Illustration';
 import Heading from '../../components/Utilities/Heading';
 import { signUp } from '../../api/index';
-import Joi from 'joi';
+import registrationSchema from '../../schema/registrationSchema';
 
 import { toast, Flip } from 'react-toastify';
 import { useState, useRef, FormEvent } from 'react';
@@ -12,57 +12,11 @@ import { useHistory } from 'react-router-dom';
 
 import SecureloginIllustration from '../../assets/securelogin-illustration.svg';
 import classes from './Signup.module.scss';
+import ErrorMessage from '../../components/Utilities/ErrorMessage';
 
 const Signup: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const history = useHistory();
-
-    const complexityCheck = (value: string, helpers: object) => {
-        // Check for lowercase characters
-        if (!/[a-z]/.test(value)) throw new Error()
-        // Check for uppercase characters
-        if (!/[A-Z]/.test(value)) throw new Error();
-        // Check for digits
-        if (!/\d/.test(value)) throw new Error();
-
-        return value;
-    }
-
-    const usernameValidation = (value: string, helpers: object) => {
-        if (!/^[a-zA-Z]/.test(value)) throw new Error();
-    }
-    const registrationSchema = Joi.object({
-        email: Joi.string()
-            .email({
-                // Maybe whitelist domains to ['com', 'ru', 'org', 'dev', 'net', 'in']
-                tlds: { allow: false }
-            })
-            .required(),
-        username: Joi.string()
-            .alphanum()
-            .min(4)
-            .max(50)
-            .custom(usernameValidation, 'username validation')
-            .required()
-            .messages({
-                'any.custom': "Username must start with an uppercase or lowercase letter."
-            }),
-        password: Joi.string()
-            .min(12)
-            .max(64)
-            .custom(complexityCheck, 'complexity check')
-            .required()
-            .messages({
-                'any.custom':
-                    "Password must have at least one lowercase character, one uppercase character and one number."
-            }),
-        confirmPassword: Joi.string()
-            .valid(Joi.ref('password'))
-            .required()
-            .messages({
-                'any.only': 'Passwords do not match'
-            })
-    });
 
     const emailRef = useRef<HTMLInputElement>(null);
     const usernameRef = useRef<HTMLInputElement>(null);
@@ -86,6 +40,7 @@ const Signup: React.FC = () => {
 
         if (error) {
             setErrorMessage(error.message);
+            return;
         } else {
             setErrorMessage(undefined);
             signUp({ email, username, password })
@@ -130,7 +85,7 @@ const Signup: React.FC = () => {
                                 label="Confirm Password" inputRef={confirmPasswordRef} icon="password" />
                             <SuccessButton type="submit">Sign Up</SuccessButton>
                         </form>
-                        <p className="font-display text-red text-center text-md mx-2">{errorMessage}</p>
+                        <ErrorMessage>{errorMessage}</ErrorMessage>
                     </div>
                 </div>
             </section>
