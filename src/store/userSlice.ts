@@ -5,7 +5,7 @@ const userSlice = createSlice({
     initialState: {
         isAuthenticated: false,
         username: undefined,
-        permission_level: 0
+        permissionLevel: 1
     },
     reducers: {
         authenticate: state => {
@@ -18,7 +18,7 @@ const userSlice = createSlice({
             state.username = action.payload;
         },
         setPermissionLevel: (state, action) => {
-            state.permission_level = action.payload;
+            state.permissionLevel = action.payload;
         }
     }
 });
