@@ -5,7 +5,6 @@ import Illustration from '../../components/Utilities/Illustration';
 import Heading from '../../components/Utilities/Heading';
 import { signUp } from '../../api/index';
 import Joi from 'joi';
-import axios from 'axios';
 
 import { toast, Flip } from 'react-toastify';
 import { useState, useRef, FormEvent } from 'react';
