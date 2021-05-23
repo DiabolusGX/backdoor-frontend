@@ -58,7 +58,8 @@ const LoginModal: React.FC<Props> = props => {
                         onOpen: () => {
                             // If we're on the signup page, redirect on login
                             // Else, just close the modal
-                            if (location.pathname === "/signup") {
+                            if (location.pathname === "/signup" ||
+                                location.pathname === "/login") {
                                 props.backdropClicked();
                                 history.push('/');
                             }

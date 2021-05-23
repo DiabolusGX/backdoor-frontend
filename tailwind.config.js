@@ -19,6 +19,7 @@ module.exports = {
         'syntax-purple': '#B877DB',
         'syntax-cyan': '#21BFC2',
         'syntax-red': '#E95678',
+        'syntax-red-darker': '#DA103F',
         'syntax-orange': '#F09383',
         'syntax-yellow': '#FAC29A',
         'syntax-yellow-darker': '#FAB795',

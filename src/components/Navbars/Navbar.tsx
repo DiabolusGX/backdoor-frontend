@@ -7,14 +7,12 @@ import NavLink from './NavLink';
 import { IStore } from '../../store/userInterface';
 
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import '../../scss/Navbar.scss';
 
 const Navbar: React.FC = () => {
     const [showLoginModal, setShowLoginModal] = useState(false);
-    const history = useHistory();
     const dispatch = useDispatch();
     const isAuthenticated = useSelector((state: IStore) => state.user.isAuthenticated)
 
@@ -28,14 +26,12 @@ const Navbar: React.FC = () => {
             .then(res => {
                 dispatch(deauthenticate());
                 toast.success(res.data.message, { transition: Flip });
-                history.push('/');
             })
             .catch(err => {
                 toast.error(err.response.data.message, { transition: Flip });
             });
     }
 
-    const signupClickHandler = () => history.push("/signup");
     let rightNavLinks;
 
     if (isAuthenticated) {
@@ -52,9 +48,11 @@ const Navbar: React.FC = () => {
         rightNavLinks = (
             <>
                 <li>
-                    <NavLink clicked={signupClickHandler}>
-                        Sign Up
+                    <Link to="/signup">
+                        <NavLink>
+                            Sign Up
                     </NavLink>
+                    </Link>
                 </li>
                 <li>
                     <NavLink clicked={loginClickHandler}>

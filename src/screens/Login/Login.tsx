@@ -3,41 +3,38 @@ import TextField from '../../components/Utilities/TextField';
 import SuccessButton from '../../components/Buttons/SuccessButton';
 import Heading from '../../components/Utilities/Heading';
 import Sidebar from '../../components/Utilities/Sidebar';
-import { signUp } from '../../api/index';
-import registrationSchema from '../../schema/registrationSchema';
+import { login } from '../../api/index';
+import { authenticate, setUsername, setPermissionLevel } from '../../store/userSlice';
+import loginSchema from '../../schema/loginSchema';
 import { motion } from 'framer-motion';
 import { routeVariants } from '../../variants/index';
 
 import { toast, Flip } from 'react-toastify';
 import { useState, useRef, FormEvent } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import SecureLoginIllustration from '../../assets/securelogin-illustration.svg';
-import classes from './Signup.module.scss';
+import AuthenticationIllustration from '../../assets/authentication-illustration.svg';
+import classes from './Login.module.scss';
 import ErrorMessage from '../../components/Utilities/ErrorMessage';
 
-const Signup: React.FC = () => {
+const Login: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const history = useHistory();
+    const dispatch = useDispatch();
 
-    const emailRef = useRef<HTMLInputElement>(null);
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    const confirmPasswordRef = useRef<HTMLInputElement>(null);
 
     const submitHandler = (e: FormEvent<HTMLFormElement>): void => {
-        const email = emailRef.current?.value;
         const username = usernameRef.current?.value;
         const password = passwordRef.current?.value;
-        const confirmPassword = confirmPasswordRef.current?.value;
 
         e.preventDefault();
 
-        const { error } = registrationSchema.validate({
-            email,
+        const { error } = loginSchema.validate({
             username,
             password,
-            confirmPassword
         });
 
         // If there's a validation error, show error message, else send request.
@@ -46,20 +43,34 @@ const Signup: React.FC = () => {
             return;
         } else {
             setErrorMessage(undefined);
-            signUp({ email, username, password })
+            login({
+                username,
+                password
+            })
                 .then(res => {
+                    // Set global application state to indicate that user is authenticated.
+                    dispatch(authenticate());
+                    // Save user data in global state
+                    dispatch(setUsername(res.data.username));
+                    dispatch(setPermissionLevel(res.data.permissionLevel));
+
                     toast.success(res.data.message, {
-                        onOpen: () => history.push('/'),
-                        transition: Flip
+                        onOpen: () => {
+                            // Redirect to / on successful login
+                            history.push('/');
+                        }
                     });
                 })
                 .catch(err => {
-                    if (err.response.status === 500) {
-                        toast.error("Server unreachable",
-                            { transition: Flip }
-                        );
-                    } else {
-                        toast.error(err.response.data.message, { transition: Flip });
+                    switch (err.response.status) {
+                        case 500:
+                            toast.error("Server unreachable", { transition: Flip });
+                            break;
+                        case 401:
+                            toast.error("Username or password incorrect", { transition: Flip });
+                            break;
+                        default:
+                            toast.error(err.response.data.message, { transition: Flip });
                     }
                 });
         }
@@ -74,31 +85,28 @@ const Signup: React.FC = () => {
         >
             <Navbar />
             <section className="flex flex-wrap w-screen h-screen box-border pt-16 overflow-hidden">
+                {/* Sidebar */}
                 <Sidebar
                     logo
                     description="Engage in meaningful cybersecurity discussions."
                     descriptionColor="grey-darker"
                     bgColor="yellow"
-                    illustration={SecureLoginIllustration}
+                    illustration={AuthenticationIllustration}
                 />
 
-                {/* Signup div */}
+                {/* Login div */}
                 <div className="flex flex-1 justify-center items-center">
-                    <div className={`w-11/12 md:w-3/5 2xl:w-2/5 m-4 py-3 sm:py-6 xl:py-10 xl:px-8
-        bg-grey-lighter rounded-3xl ${classes.Signup} flex flex-col justify-start items-center`}>
+                    <div className={`w-11/12 md:w-3/5 2xl:w-2/5 m-4 py-3 sm:py-6 xl:py-10 xl:px-8 backdrop-filter backdrop-blur-3xl
+        bg-grey-lighter rounded-3xl ${classes.Login} flex flex-col justify-start items-center`}>
                         <Heading>
-                            Get your access to Backdoor
+                            Login to Backdoor
                         </Heading>
                         <form onSubmit={submitHandler} className="w-full mt-4 mb-2 mx-4 flex flex-col items-center">
-                            <TextField placeholder="john.doe@example.com" type="email" name="email" required
-                                label="Email" inputRef={emailRef} icon="mail" />
-                            <TextField placeholder="johndoe" type="text" name="username" required
-                                label="Username" inputRef={usernameRef} icon="user" />
+                            <TextField placeholder="john.doe@example.com" type="text" name="username" required
+                                label="Username or Email" inputRef={usernameRef} icon="user" />
                             <TextField placeholder="Password" type="password" name="password" required
                                 label="Password" inputRef={passwordRef} icon="password" />
-                            <TextField placeholder="Confirm Password" type="password" required
-                                label="Confirm Password" inputRef={confirmPasswordRef} icon="password" />
-                            <SuccessButton type="submit">Sign Up</SuccessButton>
+                            <SuccessButton type="submit">Login</SuccessButton>
                         </form>
                         <ErrorMessage>{errorMessage}</ErrorMessage>
                     </div>
@@ -108,4 +116,4 @@ const Signup: React.FC = () => {
     );
 }
 
-export default Signup;
+export default Login;

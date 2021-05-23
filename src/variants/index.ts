@@ -86,3 +86,15 @@ export const sidebarVariants = {
         }
     }
 }
+
+export const threadCardVariants = {
+    hover: {
+        scale: 1.02,
+        y: -5,
+        transition: {
+            type: "tween",
+            duration: 0.5,
+            ease: "backOut"
+        }
+    }
+}
