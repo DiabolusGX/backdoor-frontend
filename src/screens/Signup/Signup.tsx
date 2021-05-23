@@ -6,7 +6,7 @@ import Heading from '../../components/Utilities/Heading';
 import { signUp } from '../../api/index';
 import registrationSchema from '../../schema/registrationSchema';
 import { motion } from 'framer-motion';
-import { sidebarVariants } from '../../variants/index';
+import { routeVariants, sidebarVariants } from '../../variants/index';
 
 import { toast, Flip } from 'react-toastify';
 import { useState, useRef, FormEvent } from 'react';
@@ -40,6 +40,7 @@ const Signup: React.FC = () => {
             confirmPassword
         });
 
+        // If there's a validation error, show error message, else send request.
         if (error) {
             setErrorMessage(error.message);
             return;
@@ -65,7 +66,12 @@ const Signup: React.FC = () => {
     }
 
     return (
-        <>
+        <motion.section
+            variants={routeVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+        >
             <Navbar />
             <section className="flex flex-wrap w-screen h-screen box-border pt-16 overflow-hidden">
                 {/* Sidebar */}
@@ -103,7 +109,7 @@ const Signup: React.FC = () => {
                     </div>
                 </div>
             </section>
-        </>
+        </motion.section>
     );
 }
 

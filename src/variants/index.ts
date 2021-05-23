@@ -1,6 +1,35 @@
 export const buttonVariants = {
     hover: {
-        scale: 1.04,
+        scale: 1.08,
+        transition: {
+            type: "tween",
+            duration: 0.4
+        }
+    }
+}
+
+export const routeVariants = {
+    hidden: {
+        x: 250,
+        opacity: 0
+    },
+    visible: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            type: "tween",
+            duration: 0.4,
+            ease: "easeInOut"
+        }
+    },
+    exit: {
+        x: -250,
+        opacity: 0,
+        transition: {
+            type: "tween",
+            duration: 0.4,
+            ease: "easeInOut"
+        }
     }
 }
 
@@ -43,14 +72,17 @@ export const backdropVariants = {
 
 export const sidebarVariants = {
     hidden: {
-        x: '-100vw'
+        opacity: 0,
+        x: -250
     },
     visible: {
+        opacity: 1,
         x: 0,
         transition: {
             type: "tween",
             ease: "circOut",
-            duration: 0.6
+            duration: 0.6,
+            delay: 0.2
         }
     }
 }

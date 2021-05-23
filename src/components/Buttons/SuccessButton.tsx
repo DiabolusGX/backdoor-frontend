@@ -3,6 +3,7 @@ import { buttonVariants } from '../../variants/index';
 
 interface Props {
     type?: "button" | "submit" | "reset" | undefined;
+    buttonRef?: React.RefObject<HTMLButtonElement>;
 }
 
 const SuccessButton: React.FC<Props> = props => (
@@ -10,7 +11,9 @@ const SuccessButton: React.FC<Props> = props => (
     rounded-xl font-display text-grey font-bold text-l md:text-xl py-2 px-4 md:py-3 md:px-5 xl:px-7"
         variants={buttonVariants}
         whileHover="hover"
-        type={props.type}>
+        type={props.type}
+        ref={props.buttonRef}
+    >
         {props.children}
     </motion.button>
 );

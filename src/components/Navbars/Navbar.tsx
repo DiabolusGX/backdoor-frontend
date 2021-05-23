@@ -3,6 +3,7 @@ import LoginModal from '../LoginModal/LoginModal';
 import { logout } from '../../api/index';
 import { deauthenticate } from '../../store/userSlice';
 import { toast, Flip } from 'react-toastify';
+import NavLink from './NavLink';
 import { IStore } from '../../store/userInterface';
 
 import { useState } from 'react';
@@ -41,12 +42,9 @@ const Navbar: React.FC = () => {
         rightNavLinks = (
             <>
                 <li>
-                    <button className="transition-border duration-300 border-4 border-transparent hover:bg-grey-lighter
-                                py-4 px-3 lg:px-5 lg:mx-3 w-full lg:w-auto text-lg font-medium text-syntax-yellow-darker focus:outline-none"
-                        onClick={logoutClickHandler}
-                    >
+                    <NavLink clicked={logoutClickHandler}>
                         Logout
-                    </button>
+                    </NavLink>
                 </li>
             </>
         );
@@ -54,20 +52,14 @@ const Navbar: React.FC = () => {
         rightNavLinks = (
             <>
                 <li>
-                    <button className="transition-border duration-300 border-4 border-transparent hover:bg-grey-lighter 
-                                py-4 px-3 lg:px-5 lg:mx-3 w-full lg:w-auto text-lg font-medium text-syntax-yellow-darker focus:outline-none"
-                        onClick={signupClickHandler}
-                    >
+                    <NavLink clicked={signupClickHandler}>
                         Sign Up
-                    </button>
+                    </NavLink>
                 </li>
                 <li>
-                    <button className="transition-border duration-300 border-4 border-transparent hover:bg-grey-lighter
-                                py-4 px-3 lg:px-5 lg:mx-3 w-full lg:w-auto text-lg font-medium text-syntax-yellow-darker focus:outline-none"
-                        onClick={loginClickHandler}
-                    >
+                    <NavLink clicked={loginClickHandler}>
                         Login
-                    </button>
+                    </NavLink>
                 </li>
             </>
         );
