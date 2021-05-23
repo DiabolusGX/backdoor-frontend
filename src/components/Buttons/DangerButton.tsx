@@ -1,14 +1,18 @@
+import { motion } from 'framer-motion';
+import { buttonVariants } from '../../variants/index';
+
 interface Props {
     type?: "button" | "submit" | "reset" | undefined;
 }
 
 const DangerButton: React.FC<Props> = props => (
-    <button className="bg-red hover:bg-red-lighter transition-colors duration-300 rounded-xl
-     font-display text-grey font-bold text-l md:text-xl p-2 md:p-3 xl:p-4"
-        type={props.type}
-    >
+    <motion.button className="bg-red hover:bg-red-lighter hover:shadow-2xl transition-colors duration-300 mt-2 focus:outline-none
+    rounded-xl font-display text-grey font-bold text-l md:text-xl py-2 px-4 md:py-3 md:px-5 xl:px-7"
+        variants={buttonVariants}
+        whileHover="hover"
+        type={props.type}>
         {props.children}
-    </button>
+    </motion.button>
 );
 
 export default DangerButton;

@@ -1,13 +1,18 @@
+import { motion } from 'framer-motion';
+import { buttonVariants } from '../../variants/index';
+
 interface Props {
     type?: "button" | "submit" | "reset" | undefined;
 }
 
 const SuccessButton: React.FC<Props> = props => (
-    <button className="bg-green-darker hover:bg-green transition-colors duration-300 mt-2 focus:outline-none
+    <motion.button className="bg-green-darker hover:bg-green hover:shadow-2xl transition-colors duration-300 mt-2 focus:outline-none
     rounded-xl font-display text-grey font-bold text-l md:text-xl py-2 px-4 md:py-3 md:px-5 xl:px-7"
+        variants={buttonVariants}
+        whileHover="hover"
         type={props.type}>
         {props.children}
-    </button>
+    </motion.button>
 );
 
 export default SuccessButton;

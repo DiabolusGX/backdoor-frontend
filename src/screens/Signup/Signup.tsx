@@ -5,6 +5,8 @@ import Illustration from '../../components/Utilities/Illustration';
 import Heading from '../../components/Utilities/Heading';
 import { signUp } from '../../api/index';
 import registrationSchema from '../../schema/registrationSchema';
+import { motion } from 'framer-motion';
+import { sidebarVariants } from '../../variants/index';
 
 import { toast, Flip } from 'react-toastify';
 import { useState, useRef, FormEvent } from 'react';
@@ -66,14 +68,20 @@ const Signup: React.FC = () => {
         <>
             <Navbar />
             <section className="flex flex-wrap w-screen h-screen box-border pt-16 overflow-hidden">
-                <div className="h-full hidden xl:block xl:w-3/12 px-5 bg-yellow flex flex-col items-start">
+                {/* Sidebar */}
+                <motion.div className="h-full hidden xl:block xl:w-3/12 px-5 bg-yellow flex flex-col items-start"
+                    variants={sidebarVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
                     <h2 className="font-logo text-xl text-red text-left pt-28 mx-2 my-4">Backdoor</h2>
                     <p className="font-body text-2xl tracking-wider text-grey-darker text-left mx-2 mt-4 xl:mb-24 2xl:mb-96">
                         Engage in meaningful cybersecurity discussions.
                 </p>
                     <Illustration src={SecureloginIllustration} />
-                </div>
+                </motion.div>
 
+                {/* Signup div */}
                 <div className="flex flex-1 justify-center items-center">
                     <div className={`w-11/12 md:w-3/5 2xl:w-2/5 m-4 py-3 sm:py-6 xl:py-10 xl:px-8 backdrop-filter backdrop-blur-3xl
         bg-grey-lighter rounded-3xl ${classes.Signup} flex flex-col justify-start items-center`}>
