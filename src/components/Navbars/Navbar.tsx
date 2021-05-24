@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import LoginModal from '../LoginModal/LoginModal';
 import { logout } from '../../api/index';
-import { deauthenticate } from '../../store/userSlice';
+import { deauthenticate, setId, setUsername, setPermissionLevel } from '../../store/userSlice';
 import { toast, Flip } from 'react-toastify';
 import NavLink from './NavLink';
 import { IStore } from '../../store/userInterface';
@@ -25,6 +25,9 @@ const Navbar: React.FC = () => {
         logout()
             .then(res => {
                 dispatch(deauthenticate());
+                dispatch(setId(undefined));
+                dispatch(setUsername(undefined));
+                dispatch(setPermissionLevel(1));
                 toast.success(res.data.message, { transition: Flip });
             })
             .catch(err => {
