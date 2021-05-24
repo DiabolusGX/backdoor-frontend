@@ -5,7 +5,7 @@ import { toast, Flip } from 'react-toastify';
 import { motion } from 'framer-motion';
 import { routeVariants } from '../../variants/index';
 import Sidebar from '../../components/Utilities/Sidebar';
-import ThreadCard from '../../components/Cards/ThreadCard';
+import ThreadCard from '../../components/Cards/ThreadCard/ThreadCard';
 import ChatIllustration from '../../assets/chat-illustration.svg';
 
 import { useEffect, useState } from 'react';
@@ -27,10 +27,10 @@ const Threads: React.FC = () => {
             exit="exit"
         >
             <Navbar />
-            <section className="flex flex-wrap w-screen h-screen box-border pt-16 overflow-x-hidden">
+            <section className="flex flex-wrap w-screen h-screen box-border overflow-x-hidden scrollbar">
                 {/* Sidebar */}
                 <Sidebar
-                    bgColor="grey-light"
+                    bgColor="yellow"
                     title="Threads"
                     description="Explore top cybersecurity topics"
                     titleColor="grey-darker"
@@ -39,13 +39,14 @@ const Threads: React.FC = () => {
                 />
 
                 {/* Content Column */}
-                <div className="flex flex-1 justify-center flex-wrap my-8 mx-2 box-border">
+                <div className="flex flex-1 justify-center flex-wrap mt-8 mb-20 mx-2 box-border">
                     {threads.map(thread => {
                         return (
                             <ThreadCard
                                 title={thread.title}
                                 body={thread.body}
                                 numberOfPosts={thread.numberOfPosts}
+                                key={thread.title}
                             />
                         )
                     })}

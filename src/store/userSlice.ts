@@ -4,6 +4,7 @@ const userSlice = createSlice({
     name: "user",
     initialState: {
         isAuthenticated: false,
+        id: undefined,
         username: undefined,
         permissionLevel: 1,
     },
@@ -13,6 +14,9 @@ const userSlice = createSlice({
         },
         deauthenticate: state => {
             state.isAuthenticated = false;
+        },
+        setId: (state, action) => {
+            state.id = action.payload
         },
         setUsername: (state, action) => {
             state.username = action.payload;
@@ -26,6 +30,7 @@ const userSlice = createSlice({
 export const {
     authenticate,
     deauthenticate,
+    setId,
     setUsername,
     setPermissionLevel
 } = userSlice.actions;

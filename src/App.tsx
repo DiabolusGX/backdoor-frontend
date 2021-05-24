@@ -4,9 +4,10 @@ import Landing from './screens/Landing/Landing';
 import Signup from './screens/Signup/Signup';
 import Login from './screens/Login/Login'
 import Threads from './screens/Threads/Threads';
+import ThreadDetails from './screens/ThreadDetails/ThreadDetails';
 import { ToastContainer } from 'react-toastify';
 import { checkAuthenticated } from './api/index';
-import { authenticate, setUsername, setPermissionLevel } from './store/userSlice';
+import { authenticate, setId, setUsername, setPermissionLevel } from './store/userSlice';
 import { IStore } from './store/userInterface';
 import { AnimatePresence } from 'framer-motion';
 
@@ -25,6 +26,7 @@ function App() {
     checkAuthenticated()
       .then(res => {
         dispatch(authenticate());
+        dispatch(setId(res.data.id));
         dispatch(setUsername(res.data.username));
         dispatch(setPermissionLevel(res.data.permissionLevel));
       })
@@ -43,8 +45,11 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/threads">
+          <Route path="/threads" exact>
             <Threads />
+          </Route>
+          <Route path="/threads/:threadName">
+            <ThreadDetails />
           </Route>
           <Route path="/">
             {/* If user is not authenticated, show landing page, else redirect to /threads */}

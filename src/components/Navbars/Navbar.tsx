@@ -66,7 +66,7 @@ const Navbar: React.FC = () => {
     return (
         <>
             <LoginModal show={showLoginModal} backdropClicked={backdropClickHandler} />
-            <nav className="flex flex-1 w-screen px-1 bg-grey fixed top-0 left-0 font-display font-medium z-30"
+            <nav className="flex flex-1 w-screen px-1 bg-grey sticky top-0 left-0 font-display font-medium z-30"
                 id="navbar">
                 <div className="flex flex-1 flex-wrap lg:flex-nowrap justify-between items-center">
                     <ul className="flex items-center px-6 self-stretch">

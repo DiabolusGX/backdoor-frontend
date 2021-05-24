@@ -87,7 +87,7 @@ export const sidebarVariants = {
     }
 }
 
-export const threadCardVariants = {
+export const cardVariants = {
     hover: {
         scale: 1.02,
         y: -5,

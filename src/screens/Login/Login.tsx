@@ -4,7 +4,7 @@ import SuccessButton from '../../components/Buttons/SuccessButton';
 import Heading from '../../components/Utilities/Heading';
 import Sidebar from '../../components/Utilities/Sidebar';
 import { login } from '../../api/index';
-import { authenticate, setUsername, setPermissionLevel } from '../../store/userSlice';
+import { authenticate, setUsername, setPermissionLevel, setId } from '../../store/userSlice';
 import loginSchema from '../../schema/loginSchema';
 import { motion } from 'framer-motion';
 import { routeVariants } from '../../variants/index';
@@ -51,6 +51,7 @@ const Login: React.FC = () => {
                     // Set global application state to indicate that user is authenticated.
                     dispatch(authenticate());
                     // Save user data in global state
+                    dispatch(setId(res.data.id));
                     dispatch(setUsername(res.data.username));
                     dispatch(setPermissionLevel(res.data.permissionLevel));
 
@@ -84,7 +85,7 @@ const Login: React.FC = () => {
             exit="exit"
         >
             <Navbar />
-            <section className="flex flex-wrap w-screen h-screen box-border pt-16 overflow-hidden">
+            <section className="flex flex-wrap w-screen h-screen box-border overflow-x-hidden scrollbar">
                 {/* Sidebar */}
                 <Sidebar
                     logo
