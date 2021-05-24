@@ -115,7 +115,6 @@ const PostCard: React.FC<Props> = props => {
                             onClick={likePostHandler}
                         />
                     )}
-                    {console.log(`userUpvoted: ${userUpvoted}\t userDownvoted: ${userDownvoted}`)}
                     < p className="mx-4 text-grey-light">{votes?.length}</p>
 
                     {userDownvoted ? (
