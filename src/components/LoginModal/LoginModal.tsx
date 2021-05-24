@@ -1,9 +1,9 @@
-import Backdrop from '../Utilities/Backdrop';
+import Backdrop from '../Backdrop/Backdrop';
 import Heading from '../Utilities/Heading';
 import TextField from '../Utilities/TextField';
 import SuccessButton from '../Buttons/SuccessButton';
 import loginSchema from '../../schema/loginSchema';
-import { authenticate, setPermissionLevel, setUsername } from '../../store/userSlice';
+import { authenticate, setId, setPermissionLevel, setUsername } from '../../store/userSlice';
 import { login } from '../../api/index';
 import { AnimatePresence, motion } from 'framer-motion';
 import { modalVariants } from '../../variants';
@@ -51,6 +51,7 @@ const LoginModal: React.FC<Props> = props => {
                     // Set global application state to indicate that user is authenticated.
                     dispatch(authenticate());
                     // Save user data in global state
+                    dispatch(setId(res.data.id));
                     dispatch(setUsername(res.data.username));
                     dispatch(setPermissionLevel(res.data.permissionLevel));
 

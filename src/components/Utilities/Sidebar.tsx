@@ -13,7 +13,8 @@ interface Props {
 }
 
 const Sidebar: React.FC<Props> = props => (
-    <motion.div className={`sticky top-0 left-0 self-start min-h-screen hidden xl:block xl:w-3/12 px-5 bg-${props.bgColor} flex flex-col items-start`}
+    <motion.div className={`sticky top-0 left-0 self-start min-h-screen hidden xl:block xl:w-3/12
+    px-5 bg-${props.bgColor} flex flex-col items-start`}
         variants={sidebarVariants} initial="hidden"
         animate="visible"
     >
@@ -30,7 +31,7 @@ const Sidebar: React.FC<Props> = props => (
             </>
         )}
 
-        <p className={`font-body text-2xl tracking-wider text-${props.descriptionColor} text-left mx-2 mt-4 xl:mb-24 2xl:mb-52`}>
+        <p className={`font-body text-2xl tracking-wider text-${props.descriptionColor} text-left mx-2 mt-4 xl:mb-20 2xl:mb-32`}>
             {props.description}
         </p>
         <Illustration src={props.illustration} />

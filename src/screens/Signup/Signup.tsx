@@ -73,7 +73,8 @@ const Signup: React.FC = () => {
             exit="exit"
         >
             <Navbar />
-            <section className="flex flex-wrap w-screen h-screen box-border pt-16 overflow-hidden">
+            {/* Add pt-16 to this section if navbar is fixed instead of sticky */}
+            <section className="flex flex-wrap w-screen h-screen box-border overflow-x-hidden scrollbar">
                 <Sidebar
                     logo
                     description="Engage in meaningful cybersecurity discussions."
@@ -83,7 +84,7 @@ const Signup: React.FC = () => {
                 />
 
                 {/* Signup div */}
-                <div className="flex flex-1 justify-center items-center">
+                <div className="flex flex-1 justify-center items-center mt-8 mb-20">
                     <div className={`w-11/12 md:w-3/5 2xl:w-2/5 m-4 py-3 sm:py-6 xl:py-10 xl:px-8
         bg-grey-lighter rounded-3xl ${classes.Signup} flex flex-col justify-start items-center`}>
                         <Heading>

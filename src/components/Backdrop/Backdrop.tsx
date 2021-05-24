@@ -8,7 +8,7 @@ interface Props {
 const Backdrop: React.FC<Props> = (props) => (
     <motion.div
         className="flex justify-center items-center bg-black bg-opacity-50 fixed 
-        w-screen h-screen z-40 fixed top-0 left-0"
+        w-screen h-screen z-40 fixed top-0 left-0 backdrop-filter backdrop-blur-lg"
         onClick={props.clicked}
         variants={backdropVariants}
         initial="hidden"

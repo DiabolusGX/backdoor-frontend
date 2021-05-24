@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import LoginModal from '../LoginModal/LoginModal';
 import { logout } from '../../api/index';
-import { deauthenticate } from '../../store/userSlice';
+import { deauthenticate, setId, setUsername, setPermissionLevel } from '../../store/userSlice';
 import { toast, Flip } from 'react-toastify';
 import NavLink from './NavLink';
 import { IStore } from '../../store/userInterface';
@@ -25,6 +25,9 @@ const Navbar: React.FC = () => {
         logout()
             .then(res => {
                 dispatch(deauthenticate());
+                dispatch(setId(undefined));
+                dispatch(setUsername(undefined));
+                dispatch(setPermissionLevel(1));
                 toast.success(res.data.message, { transition: Flip });
             })
             .catch(err => {
@@ -66,7 +69,7 @@ const Navbar: React.FC = () => {
     return (
         <>
             <LoginModal show={showLoginModal} backdropClicked={backdropClickHandler} />
-            <nav className="flex flex-1 w-screen px-1 bg-grey fixed top-0 left-0 font-display font-medium z-30"
+            <nav className="flex flex-1 w-screen px-1 bg-grey sticky top-0 left-0 font-display font-medium z-30"
                 id="navbar">
                 <div className="flex flex-1 flex-wrap lg:flex-nowrap justify-between items-center">
                     <ul className="flex items-center px-6 self-stretch">
