@@ -60,8 +60,8 @@ const CreateThreadModal: React.FC<Props> = props => {
                             <div className="mt-4 flex justify-center align-center">
                                 <SuccessButton type="submit">Create</SuccessButton>
                             </div>
-                            <ErrorMessage>{errorMessage}</ErrorMessage>
                         </form>
+                        <ErrorMessage>{errorMessage}</ErrorMessage>
                     </ModalContainer>
                 </Backdrop>
             )}

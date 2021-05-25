@@ -5,6 +5,7 @@ import Signup from './screens/Signup/Signup';
 import Login from './screens/Login/Login'
 import Threads from './screens/Threads/Threads';
 import ThreadDetails from './screens/ThreadDetails/ThreadDetails';
+import NewPost from './screens/NewPost/NewPost';
 import { ToastContainer } from 'react-toastify';
 import { checkAuthenticated } from './api/index';
 import { authenticate, setId, setUsername, setPermissionLevel } from './store/userSlice';
@@ -50,6 +51,9 @@ function App() {
           </Route>
           <Route path="/threads/:threadName">
             <ThreadDetails />
+          </Route>
+          <Route path="/posts/new">
+            <NewPost />
           </Route>
           <Route path="/">
             {/* If user is not authenticated, show landing page, else redirect to /threads */}

@@ -1,3 +1,4 @@
+import PageBody from '../../components/Utilities/PageBody';
 import { routeVariants } from '../../variants/index';
 import { fetchThread, fetchPostsBySearch } from '../../api/index';
 import { IThread, IPost } from '../../api/modelsInterface';
@@ -50,13 +51,13 @@ const ThreadDetails: React.FC = () => {
             exit="exit"
         >
             <Navbar />
-            <section className="flex flex-wrap w-screen h-screen box-border overflow-x-hidden scrollbar">
+            <PageBody>
                 <Sidebar
-                    bgColor="yellow"
+                    bgColor="grey-lighter"
                     title={threadName}
                     description={threadData?.body}
-                    titleColor="grey-darker"
-                    descriptionColor="grey-lighter"
+                    titleColor="yellow"
+                    descriptionColor="grey-light"
                     illustration={PostIllustration}
                 />
                 <div className="flex flex-1 flex-col items-center flex-wrap mt-8 mb-20 mx-2 box-border">
@@ -73,7 +74,7 @@ const ThreadDetails: React.FC = () => {
                         );
                     })}
                 </div>
-            </section>
+            </PageBody>
         </motion.div>
     );
 }

@@ -1,3 +1,4 @@
+import PageBody from '../../components/Utilities/PageBody';
 import Navbar from '../../components/Navbars/Navbar';
 import InputField from '../../components/Utilities/InputField';
 import { MailIcon, UserIcon, KeyIcon } from '@heroicons/react/solid';
@@ -74,8 +75,7 @@ const Signup: React.FC = () => {
             exit="exit"
         >
             <Navbar />
-            {/* Add pt-16 to this section if navbar is fixed instead of sticky */}
-            <section className="flex flex-wrap w-screen h-screen box-border overflow-x-hidden scrollbar">
+            <PageBody>
                 <Sidebar
                     logo
                     description="Engage in meaningful cybersecurity discussions."
@@ -117,7 +117,7 @@ const Signup: React.FC = () => {
                         <ErrorMessage>{errorMessage}</ErrorMessage>
                     </div>
                 </div>
-            </section>
+            </PageBody>
         </motion.section>
     );
 }
