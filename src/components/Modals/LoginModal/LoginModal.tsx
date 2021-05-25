@@ -1,19 +1,20 @@
-import Backdrop from '../Backdrop/Backdrop';
-import Heading from '../Utilities/Heading';
-import TextField from '../Utilities/TextField';
-import SuccessButton from '../Buttons/SuccessButton';
-import loginSchema from '../../schema/loginSchema';
-import { authenticate, setId, setPermissionLevel, setUsername } from '../../store/userSlice';
-import { login } from '../../api/index';
-import { AnimatePresence, motion } from 'framer-motion';
-import { modalVariants } from '../../variants';
+import Backdrop from '../../Backdrop/Backdrop';
+import Heading from '../../Utilities/Heading';
+import InputField from '../../Utilities/InputField';
+import { MailIcon, KeyIcon } from '@heroicons/react/solid';
+import SuccessButton from '../../Buttons/SuccessButton';
+import loginSchema from '../../../schema/loginSchema';
+import { authenticate, setId, setPermissionLevel, setUsername } from '../../../store/userSlice';
+import { login } from '../../../api/index';
+import { AnimatePresence } from 'framer-motion';
+import ModalContainer from '../ModalContainer';
 
 import { useRef, useState, FormEvent } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { toast, Flip } from 'react-toastify';
-
 import { useDispatch } from 'react-redux';
-import ErrorMessage from '../Utilities/ErrorMessage';
+import ErrorMessage from '../../Utilities/ErrorMessage';
+
 
 interface Props {
     show: boolean;
@@ -88,37 +89,32 @@ const LoginModal: React.FC<Props> = props => {
     return (
         <AnimatePresence>
             {props.show && (
-                <Backdrop clicked={props.backdropClicked} >
-                    <motion.div className="flex flex-col justify-center items-center bg-grey-lighter rounded-2xl
-                w-10/12 sm:w-3/5 md:w-2/5 2xl:w-4/12 m-4 py-4 sm:py-6 xl:py-10 xl:px-8"
-                        onClick={e => e.stopPropagation()}
-                        variants={modalVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                    >
+                <Backdrop clicked={props.backdropClicked}>
+                    <ModalContainer>
                         <Heading> Login </Heading>
                         <form onSubmit={submitHandler} className="mt-4 my-2 flex flex-col flex-1">
-                            <TextField
+                            <InputField
                                 label="Email or Username"
                                 placeholder="john.doe@example.com"
                                 type="text"
-                                icon="user"
                                 inputRef={usernameRef}
-                            />
-                            <TextField
+                            >
+                                <MailIcon className="w-2/3 h-2/3" />
+                            </InputField>
+                            <InputField
                                 label="Password"
                                 placeholder="Password"
                                 type="password"
-                                icon="password"
                                 inputRef={passwordRef}
-                            />
+                            >
+                                <KeyIcon className="w-2/3 h-2/3" />
+                            </InputField>
                             <div className="mt-4 flex justify-center align-center">
                                 <SuccessButton type="submit">Login</SuccessButton>
                             </div>
                         </form>
                         <ErrorMessage>{errorMessage}</ErrorMessage>
-                    </motion.div>
+                    </ModalContainer>
                 </Backdrop>
             )}
         </AnimatePresence>
