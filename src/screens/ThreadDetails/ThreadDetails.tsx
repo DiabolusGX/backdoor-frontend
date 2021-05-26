@@ -44,7 +44,7 @@ const ThreadDetails: React.FC = () => {
     }, [threadName]);
 
     return (
-        <motion.div
+        <motion.section
             variants={routeVariants}
             initial="hidden"
             animate="visible"
@@ -75,7 +75,7 @@ const ThreadDetails: React.FC = () => {
                     })}
                 </div>
             </PageBody>
-        </motion.div>
+        </motion.section>
     );
 }
 
