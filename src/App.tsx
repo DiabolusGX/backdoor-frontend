@@ -3,6 +3,7 @@ import { Route, Switch, useLocation, Redirect } from 'react-router-dom';
 import Landing from './screens/Landing/Landing';
 import Signup from './screens/Signup/Signup';
 import Login from './screens/Login/Login'
+import Profile from './screens/Profile/Profile';
 import Threads from './screens/Threads/Threads';
 import ThreadDetails from './screens/ThreadDetails/ThreadDetails';
 import PostDetails from './screens/PostDetails/PostDetails';
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/users/:username">
+            <Profile />
           </Route>
           <Route path="/threads" exact>
             <Threads />
