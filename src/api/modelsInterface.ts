@@ -2,7 +2,7 @@ export interface IPost {
     _id: string;
     title: string;
     body: string;
-    author: string;
+    user: string;
     votes: [string];
     downVotes: [string];
     tags: [string];
@@ -16,7 +16,7 @@ export interface IThread {
     body: string;
     posts: [string];
     numberOfPosts: number;
-    author: string;
+    user: string;
     createdAt: Date;
 }
 

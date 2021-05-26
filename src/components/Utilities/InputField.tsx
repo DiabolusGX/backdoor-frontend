@@ -15,7 +15,7 @@ const InputField: React.FC<Props> = props => {
     }
 
     return (
-        <div className="field w-full px-5 lg:px-4 xl:px-0">
+        <div className="field w-full mx-4 lg:mx-4 xl:mx-0">
             <label className="label font-normal">{props.label}</label>
             <div className={`control ${leftIconClass}`}>
                 <input

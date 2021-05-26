@@ -22,7 +22,7 @@ const TextArea: React.FC<Props> = props => {
     }
 
     return (
-        <div className="flex flex-1 flex-col items-end">
+        <div className="flex flex-1 w-full flex-col items-end">
             <div className="flex w-full justify-between my-2 text-md">
                 <p className={`text-syntax-yellow`}>{props.label}</p>
                 <p className={`text-${textColor}`}>{contentLength} / {props.limit}</p>

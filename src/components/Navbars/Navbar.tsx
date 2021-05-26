@@ -50,6 +50,11 @@ const Navbar: React.FC = () => {
                         Create Thread
                     </NavLink>
                 )}
+                <Link to="/posts/new">
+                    <NavLink>
+                        New Post
+                    </NavLink>
+                </Link>
                 <NavLink clicked={logoutClickHandler}>
                     Logout
                 </NavLink>

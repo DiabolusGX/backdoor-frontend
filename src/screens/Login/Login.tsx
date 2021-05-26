@@ -1,3 +1,4 @@
+import PageBody from '../../components/Utilities/PageBody';
 import Navbar from '../../components/Navbars/Navbar';
 import InputField from '../../components/Utilities/InputField';
 import { UserIcon, KeyIcon } from '@heroicons/react/solid';
@@ -86,7 +87,7 @@ const Login: React.FC = () => {
             exit="exit"
         >
             <Navbar />
-            <section className="flex flex-wrap w-screen h-screen box-border overflow-x-hidden scrollbar">
+            <PageBody>
                 {/* Sidebar */}
                 <Sidebar
                     logo
@@ -98,8 +99,8 @@ const Login: React.FC = () => {
 
                 {/* Login div */}
                 <div className="flex flex-1 justify-center items-center">
-                    <div className={`w-11/12 md:w-3/5 2xl:w-2/5 m-4 py-3 sm:py-6 xl:py-10 xl:px-8 backdrop-filter backdrop-blur-3xl
-        bg-grey-lighter rounded-3xl ${classes.Login} flex flex-col justify-start items-center`}>
+                    <div className={`w-11/12 md:w-3/5 2xl:w-2/5 m-4 py-3 sm:py-6 xl:py-10 xl:px-8 bg-grey-lighter 
+                    rounded-3xl ${classes.Login} flex flex-col justify-start items-center`}>
                         <Heading>
                             Login to Backdoor
                         </Heading>
@@ -119,7 +120,7 @@ const Login: React.FC = () => {
                         <ErrorMessage>{errorMessage}</ErrorMessage>
                     </div>
                 </div>
-            </section>
+            </PageBody>
         </motion.section>
     );
 }

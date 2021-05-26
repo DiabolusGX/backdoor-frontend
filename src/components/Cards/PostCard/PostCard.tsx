@@ -1,13 +1,10 @@
-import { motion } from "framer-motion"
-import { cardVariants } from '../../../variants/index';
 import { reactPost } from '../../../api/index';
 import { Link, useParams } from 'react-router-dom';
 import CardTitle from "../CardTitle";
-import { ChevronUpIcon, ChevronDownIcon, AnnotationIcon } from '@heroicons/react/solid';
+import { ArrowUpIcon, ArrowDownIcon, AnnotationIcon } from '@heroicons/react/solid';
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { IStore } from '../../../store/userInterface';
-import classes from './PostCard.module.scss';
 
 import { toast, Flip } from "react-toastify";
 import CardBody from "../CardBody";
@@ -81,11 +78,9 @@ const PostCard: React.FC<Props> = props => {
     }
 
     return (
-        <motion.div
-            className={`flex flex-col justify-around w-11/12 md:w-10/12 xl:w-9/12 2xl:w-8/12 cursor-pointer
-            ${classes.PostCard} rounded-2xl bg-grey-lighter my-8 box-border`}
-            variants={cardVariants}
-            whileHover="hover"
+        <div
+            className="flex flex-col justify-around w-11/12 md:w-10/12 xl:w-9/12 2xl:w-8/12 cursor-pointer
+            rounded-2xl bg-grey-lighter my-8 box-border"
         >
             {/* Post title and body */}
             <div className="px-8 pt-8 md:px-12 md:pt-12 xl:px-12 xl:pt-8">
@@ -107,20 +102,20 @@ const PostCard: React.FC<Props> = props => {
             xl:px-12 xl:py-4 bg-grey rounded-b-2xl">
                 <div className="flex justify-start items-center">
                     {userUpvoted ? (
-                        <ChevronUpIcon className="w-8 text-red-lighter hover:text-white"
+                        <ArrowUpIcon className="w-7 text-red-lighter hover:text-white"
                             onClick={likePostHandler}
                         />) : (
-                        <ChevronUpIcon className="w-8 text-white hover:text-red-lighter"
+                        <ArrowUpIcon className="w-7 text-white hover:text-red-lighter"
                             onClick={likePostHandler}
                         />
                     )}
                     < p className="mx-4 text-grey-light">{votes?.length}</p>
 
                     {userDownvoted ? (
-                        <ChevronDownIcon className="w-8 text-syntax-purple hover:text-white"
+                        <ArrowDownIcon className="w-7 text-syntax-purple hover:text-white"
                             onClick={dislikePostHandler}
                         />) : (
-                        <ChevronDownIcon className="w-8 text-white hover:text-syntax-purple"
+                        <ArrowDownIcon className="w-7 text-white hover:text-syntax-purple"
                             onClick={dislikePostHandler}
                         />
                     )}
@@ -131,7 +126,7 @@ const PostCard: React.FC<Props> = props => {
                     <p className="mx-4 hidden md:block">Comments</p>
                 </div>
             </div>
-        </motion.div >
+        </div >
     );
 }
 

@@ -1,3 +1,4 @@
+import PageBody from '../../components/Utilities/PageBody';
 import Navbar from '../../components/Navbars/Navbar';
 import { fetchAllThreads } from '../../api/index';
 import { IThread } from '../../api/modelsInterface';
@@ -27,14 +28,14 @@ const Threads: React.FC = () => {
             exit="exit"
         >
             <Navbar />
-            <section className="flex flex-wrap w-screen h-screen box-border overflow-x-hidden scrollbar">
+            <PageBody>
                 {/* Sidebar */}
                 <Sidebar
-                    bgColor="yellow"
+                    bgColor="grey-lighter"
                     title="Threads"
                     description="Explore top cybersecurity topics"
-                    titleColor="grey-darker"
-                    descriptionColor="grey-lighter"
+                    titleColor="yellow"
+                    descriptionColor="grey-light"
                     illustration={ChatIllustration}
                 />
 
@@ -51,7 +52,7 @@ const Threads: React.FC = () => {
                         )
                     })}
                 </div>
-            </section>
+            </PageBody>
         </motion.section>
     );
 };

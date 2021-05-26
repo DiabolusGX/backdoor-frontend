@@ -24,7 +24,7 @@ const Sidebar: React.FC<Props> = props => (
 
         {props.title && (
             <>
-                <h2 className={`font-display font-medium text-6xl text-${props.titleColor} text-left pt-28 mx-2 my-4`}>
+                <h2 className={`font-display font-medium text-6xl text-${props.titleColor} text-left pt-20 mx-2 my-4`}>
                     {props.title}
                 </h2>
                 <hr className={`border-2 border-${props.titleColor} rounded-2xl`} />
