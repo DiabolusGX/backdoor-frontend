@@ -31,12 +31,6 @@ const PostCard: React.FC<Props> = props => {
     const userId = useSelector<IStore>(state => state.user.id) as string;
 
     const threadName = params.threadName;
-    let postBody;
-    if (props.body.length > 250) {
-        postBody = props.body.substring(0, 250) + "..."
-    } else {
-        postBody = props.body;
-    }
 
     const updateVotes = useCallback((passedVotes: [string], passedDownVotes: [string]) => {
         if (passedVotes.includes(userId)) {
@@ -92,7 +86,7 @@ const PostCard: React.FC<Props> = props => {
                     <hr className="mb-4 border-red-lighter" />
 
                     <CardBody>
-                        {postBody}
+                        {props.body}
                     </CardBody>
                 </Link>
             </div>

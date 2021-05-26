@@ -43,6 +43,7 @@ const ThreadDetails: React.FC = () => {
             });
     }, [threadName]);
 
+
     return (
         <motion.section
             variants={routeVariants}
@@ -62,11 +63,19 @@ const ThreadDetails: React.FC = () => {
                 />
                 <div className="flex flex-1 flex-col items-center flex-wrap pt-8 pb-20 mx-2 box-border">
                     {posts?.map(post => {
+                        let postBody;
+
+                        if (post.body.length > 250) {
+                            postBody = post.body.substring(0, 250) + "..."
+                        } else {
+                            postBody = post.body;
+                        }
+
                         return (
                             <PostCard
                                 id={post._id}
                                 title={post.title}
-                                body={post.body}
+                                body={postBody}
                                 votes={post.votes}
                                 downVotes={post.downVotes}
                                 key={post._id}
