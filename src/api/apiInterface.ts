@@ -18,7 +18,7 @@ export interface IUpdateUser {
 export interface IPostData {
     title: string;
     body: string;
-    tags: [ string ];
+    tags: string[];
 }
 
 export interface IThreadData {
