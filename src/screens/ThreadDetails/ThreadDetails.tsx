@@ -60,7 +60,7 @@ const ThreadDetails: React.FC = () => {
                     descriptionColor="grey-light"
                     illustration={PostIllustration}
                 />
-                <div className="flex flex-1 flex-col items-center flex-wrap mt-8 mb-20 mx-2 box-border">
+                <div className="flex flex-1 flex-col items-center flex-wrap pt-8 pb-20 mx-2 box-border">
                     {posts?.map(post => {
                         return (
                             <PostCard

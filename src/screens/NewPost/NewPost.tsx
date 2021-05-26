@@ -73,7 +73,8 @@ const NewPost: React.FC = () => {
         const description = descriptionRef.current?.value as string;
         const { error } = postSchema.validate({
             title,
-            description
+            description,
+            threads: selectedThreads
         });
         if (error) {
             setErrorMessage(error.message);
