@@ -6,7 +6,7 @@ export interface IPost {
     votes: [string];
     downVotes: [string];
     tags: [string];
-    comments: [{ author: string, message: string, votes: number, createdAt: Date }];
+    comments: [string];
     createdAt: Date;
     updatedAt: Date;
 }
@@ -29,6 +29,7 @@ export interface IUser {
     score: number;
     joinedAt: Date;
     posts: [string];
+    comments: [string];
     votedPosts: [string];
     votedComments: [string];
 }
