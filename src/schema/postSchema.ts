@@ -8,6 +8,10 @@ const postSchema = Joi.object({
     description: Joi.string()
         .min(10)
         .max(2000)
+        .required(),
+    threads: Joi.array()
+        .min(1)
+        .label("Tags")
         .required()
 });
 

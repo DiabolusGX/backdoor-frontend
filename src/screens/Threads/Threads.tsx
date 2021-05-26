@@ -40,7 +40,7 @@ const Threads: React.FC = () => {
                 />
 
                 {/* Content Column */}
-                <div className="flex flex-1 justify-center flex-wrap mt-8 mb-20 mx-2 box-border">
+                <div className="flex flex-1 justify-center flex-wrap pt-8 pb-20 mx-2 box-border">
                     {threads.map(thread => {
                         return (
                             <ThreadCard
