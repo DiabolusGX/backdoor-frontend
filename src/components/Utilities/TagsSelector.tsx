@@ -35,7 +35,7 @@ const TagsSelector: React.FC<Props> = props => {
                             {props.allThreads?.map(tag => {
                                 return (
                                     <li className="w-full hover:bg-grey-lightest my-1 font-body cursor-pointer
-                                text-lg pl-4 pr-20 lg:pr-56 xl:pr-72 2xl:pr-96 py-3 text-grey-light"
+                                text-lg pl-4 pr-20 lg:pr-56 xl:pr-72 2xl:pr-96 py-3 text-white"
                                         onClick={props.threadSelectHandler}
                                         key={tag}>
                                         {tag}

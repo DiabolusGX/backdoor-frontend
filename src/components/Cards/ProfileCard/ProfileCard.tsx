@@ -21,7 +21,7 @@ const ProfileCard: React.FC<Props> = props => {
             {/* Username and bio */}
             <div className="px-8 pt-8 md:px-12 md:pt-12 xl:px-12 xl:pt-8">
                 <h2 className="flex justify-between text-display tracking-wider font-display text-2xl md:text-3xl 2xl:text-5xl text-syntax-purple my-2">
-                    <div className="flex">
+                    <div className="flex items-center justify-around">
                         {props.username}
                         {props.permissionLevel && props.permissionLevel === 2 ? <GlobeIcon className="w-8 mx-4"/> : null}
                         {props.permissionLevel && props.permissionLevel === 3 ? <ViewGridAddIcon className="w-8 mx-4"/> : null}

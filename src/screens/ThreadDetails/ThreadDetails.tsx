@@ -11,13 +11,14 @@ import { toast, Flip } from 'react-toastify';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Heading from '../../components/Utilities/Heading';
 
 interface RouteParams {
     threadName: string;
 }
 
 const ThreadDetails: React.FC = () => {
-    const [posts, setPosts] = useState<Array<IPost>>();
+    const [posts, setPosts] = useState<Array<IPost>>([]);
     const [threadData, setThreadData] = useState<IThread>();
     const { threadName } = useParams<RouteParams>();
 
@@ -61,28 +62,37 @@ const ThreadDetails: React.FC = () => {
                     descriptionColor="grey-light"
                     illustration={PostIllustration}
                 />
-                <div className="flex flex-1 flex-col items-center flex-wrap pt-8 pb-20 mx-2 box-border">
-                    {posts?.map(post => {
-                        let postBody;
+                {posts.length ? (
+                    <div className="flex flex-1 flex-col items-center flex-wrap pt-8 pb-20 mx-2 box-border">
+                        {posts?.map(post => {
+                            let postBody;
 
-                        if (post.body.length > 250) {
-                            postBody = post.body.substring(0, 250) + "..."
-                        } else {
-                            postBody = post.body;
-                        }
+                            if (post.body.length > 250) {
+                                postBody = post.body.substring(0, 250) + "..."
+                            } else {
+                                postBody = post.body;
+                            }
 
-                        return (
-                            <PostCard
-                                id={post._id}
-                                title={post.title}
-                                body={postBody}
-                                votes={post.votes}
-                                downVotes={post.downVotes}
-                                key={post._id}
-                            />
-                        );
-                    })}
-                </div>
+                            return (
+                                <PostCard
+                                    id={post._id}
+                                    title={post.title}
+                                    body={postBody}
+                                    votes={post.votes}
+                                    downVotes={post.downVotes}
+                                    key={post._id}
+                                />
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <div className="mx-auto my-20">
+                        <Heading>
+                            This thread is empty. Please create a post.
+                        </Heading>
+                    </div>
+                )
+                }
             </PageBody>
         </motion.section>
     );

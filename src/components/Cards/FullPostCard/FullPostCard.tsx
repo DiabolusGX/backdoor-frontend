@@ -61,6 +61,7 @@ const FullPostCard: React.FC<Props> = props => {
 
             <CardReactions
                 id={props.id}
+                author={props.user}
                 votes={props.votes}
                 downVotes={props.downVotes}
             />

@@ -1,7 +1,7 @@
-import { ArrowUpIcon, ArrowDownIcon, AnnotationIcon } from '@heroicons/react/solid';
+import { ArrowUpIcon, ArrowDownIcon, AnnotationIcon, TrashIcon } from '@heroicons/react/solid';
 import { IStore } from '../../store/userInterface';
-import { Link } from 'react-router-dom';
-import { reactComment, reactPost } from '../../api/index';
+import { useLocation, useHistory, useParams, Link } from 'react-router-dom';
+import { reactComment, reactPost, deleteComment, deletePost } from '../../api/index';
 import { toast, Flip } from "react-toastify";
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -13,6 +13,11 @@ interface Props {
     showComments?: boolean; // Do we want to show the comments icon at the right?
     comment?: boolean; // Does this reactions element belong to a CommentCard or a PostCard?
     threadName?: string
+    author?: string;
+}
+
+interface RouteParams {
+    postId: string;
 }
 
 const CardReactions: React.FC<Props> = props => {
@@ -21,6 +26,10 @@ const CardReactions: React.FC<Props> = props => {
     const [userUpvoted, setUserUpvoted] = useState(false);
     const [userDownvoted, setUserDownvoted] = useState(false);
     const userId = useSelector<IStore>(state => state.user.id) as string;
+    const permissionLevel = useSelector<IStore>(state => state.user.permissionLevel) as number;
+    const params = useParams<RouteParams>();
+    const location = useLocation();
+    const history = useHistory();
 
     const updateVotes = useCallback((passedVotes: [string], passedDownVotes: [string]) => {
         if (passedVotes.includes(userId)) {
@@ -81,6 +90,25 @@ const CardReactions: React.FC<Props> = props => {
         }
     }
 
+    const deleteHandler = () => {
+        if (props.comment) {
+            const postId = params.postId;
+            deleteComment(props.id, postId)
+                .then(res => {
+                    toast.success(res.data.message, { transition: Flip })
+                    history.replace(location.pathname);
+                })
+                .catch(err => toast.error(err.response.data.message, { transition: Flip }));
+        } else {
+            deletePost(props.id)
+                .then(res => {
+                    toast.success(res.data.message, { transition: Flip })
+                    history.goBack();
+                })
+                .catch(err => toast.error(err.response.data.message, { transition: Flip }));
+        }
+    }
+
     // {/* Post actions (Like, Dislike, etc) */ }
     return (
         <div className="max-h-min flex justify-between items-center mt-4 px-8 py-4 md:px-12 md:py-6
@@ -114,6 +142,11 @@ const CardReactions: React.FC<Props> = props => {
                     </div>
                 </Link>
             )}
+            {!props.showComments && (userId === props.author || permissionLevel > 1) ? (
+                <div className="flex justify-start items-center text-grey-light hover:text-red-lighter">
+                    <TrashIcon onClick={deleteHandler} className="text-red w-8 cursor-pointer" />
+                </div>
+            ) : null}
         </div>
     );
 }

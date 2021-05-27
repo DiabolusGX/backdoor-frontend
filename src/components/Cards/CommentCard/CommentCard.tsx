@@ -29,7 +29,7 @@ const CommentCard: React.FC<Props> = props => {
     }, [history, props.user]);
 
     return (
-        <div className="flex flex-col justify-around w-11/12 md:w-9/12 xl:w-7/12 rounded-2xl bg-grey-lighter 
+        <div className="flex flex-col justify-around w-11/12 md:w-9/12 xl:w-7/12 rounded-2xl bg-grey 
             mt-4 box-border">
 
             <div className="w-full flex justify-between items-center xl:mt-7 text-lg text-grey-light
@@ -47,6 +47,7 @@ const CommentCard: React.FC<Props> = props => {
             </div>
             <CardReactions
                 id={props.id}
+                author={props.user}
                 comment
                 votes={props.votes}
                 downVotes={props.downVotes}

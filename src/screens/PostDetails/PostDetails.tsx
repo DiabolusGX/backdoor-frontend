@@ -39,6 +39,7 @@ const PostDetails: React.FC = props => {
                 toast.error(err.response.data.message, { transition: Flip })
             });
     }, [postId, history]);
+
     return (
         <motion.section
             variants={routeVariants}
