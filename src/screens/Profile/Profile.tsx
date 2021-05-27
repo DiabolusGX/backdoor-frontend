@@ -32,7 +32,7 @@ const Profile: React.FC = () => {
                 toast.error(err.response.data.message, { transition: Flip })
                 history.goBack();
             });
-    }, [username]);
+    }, [username, history]);
 
     return (
         <motion.section
